@@ -1,0 +1,27 @@
+spring:
+  liquibase:
+    url: jdbc:postgresql://192.168.46.10:5432/files_db
+    user: files_user
+    password: 123
+  r2dbc:
+    url: r2dbc:postgresql://192.168.46.10:5432/files_db
+    username: files_user
+    password: 123
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+  ldap:
+    urls: 172.29.1.10
+    domain: lanit
+logging:
+  level:
+    io.r2dbc.postgresql.QUERY: DEBUG
+    io.r2dbc.postgresql.PARAM: DEBUG
+
+destinations:
+  queues:
+    NYSE:
+      exchange: nyse
+      routing-key: NYSE

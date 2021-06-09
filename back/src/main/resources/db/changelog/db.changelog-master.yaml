@@ -1,0 +1,140 @@
+databaseChangeLog:
+  - logicalFilePath: db/changelog/db.changelog-lesson1.yaml
+  - changeSet:
+      id: 1
+      author: ramazanov
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: serial
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: login
+                  type: varchar(50)
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
+                  name: full_name
+                  type: varchar(50)
+              - column:
+                  name: email
+                  type: varchar(50)
+
+  - changeSet:
+      id: 2
+      author: ramazanov
+      comment: "Create new user"
+      changes:
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: login
+                  value: "ramazanov"
+              - column:
+                  name: full_name
+                  value: "Рамазанов Руслан Ринатович"
+              - column:
+                  name: email
+                  value: "ramazanov@lanit.ru"
+      rollback:
+        - delete:
+            tableName: users
+            where: username in ('admin', 'guest')
+
+  - changeSet:
+      id: 3
+      author: ramazanov
+      comment: "created and modified"
+      changes:
+        - addColumn:
+            tableName: users
+            columns:
+              - column:
+                  name: created
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
+              - column:
+                  name: modified
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
+
+  - changeSet:
+      id: 4
+      author: ramazanov
+      comment: "role"
+      changes:
+        - addColumn:
+            tableName: users
+            columns:
+              - column:
+                  name: role
+                  type: int
+                  defaultValueComputed: 0
+
+
+  - changeSet:
+      id: 5
+      author: ramazanov
+      comment: "create files table"
+      changes:
+        - createTable:
+            tableName: files
+            columns:
+              - column:
+                  name: id
+                  type: serial
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: filename
+                  type: varchar(250)
+                  constraints:
+#                    unique: true
+                    nullable: false
+              - column:
+                  name: path
+                  type: varchar(250)
+                  constraints:
+#                    unique: true
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: int
+                  constraints:
+#                    unique: true
+                    nullable: false
+              - column:
+                  name: created
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
+              - column:
+                  name: modified
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
+  - changeSet:
+      id: 6
+      author: ramazanov
+      comment: "test file"
+      changes:
+        - insert:
+            tableName: files
+            columns:
+              - column:
+                  name: filename
+                  value: "ramazanov.zip"
+              - column:
+                  name: path
+                  value: "tmp/ramazanov.zip"
+              - column:
+                  name: user_id
+                  value: 1

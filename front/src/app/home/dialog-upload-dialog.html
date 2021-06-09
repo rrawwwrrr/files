@@ -1,0 +1,53 @@
+<h2 mat-dialog-title>Загрузка файлов</h2>
+<mat-dialog-content class="mat-typography">
+  <div class="parentPanel">
+    <div class="leftPanel">
+      <input type="file" class="file-input" (change)="onFileSelected($event)" #fileUpload multiple>
+        <table>
+          <tr *ngFor="let fileExt of filesExt">
+            <td>
+              <div *ngIf="fileExt.percent!=100;else doneBlock">
+                <mat-progress-spinner diameter="20" color="primary" mode="determinate" [value]="fileExt.percent">
+                </mat-progress-spinner>
+              </div>
+              <ng-template #doneBlock>
+                <mat-icon style="color: green;">done</mat-icon>
+              </ng-template>
+            </td>
+            <td style="margin-right: 10px;">{{fileExt.file.name}}</td>
+            <td>
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Комментарий">
+              </mat-form-field>
+            </td>
+            <td style="cursor: pointer;">
+              <mat-icon>delete</mat-icon>
+            </td>
+          </tr>
+        </table>
+    </div>
+    <div class="rightPanel">
+      <section class="rightPanel-box">
+        <button mat-stroked-button class="rightPanel-element"><mat-slide-toggle color="primary" [disabled]="2 > filesExt.length"  [(ngModel)]="isChecked">Загрузить в архив</mat-slide-toggle></button>        
+      <br>
+        <mat-form-field class="rightPanel-element" appearance="fill">
+          <mat-label>Формат архива</mat-label>
+          <mat-select [disabled]="!isChecked">
+            <mat-option value="rar">rar</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </section>
+
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+
+  <button mat-button color="primary" class="upload-btn" (click)="fileUpload.click()">
+    <mat-icon>attach_file</mat-icon>
+    Выбрать файлы
+  </button>
+  <button mat-button mat-dialog-close cdkFocusInitial>Загрузить</button>
+  <button mat-button mat-dialog-close>Отмена</button>
+
+</mat-dialog-actions>

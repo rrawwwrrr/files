@@ -1,0 +1,74 @@
+/* You can add global styles to this file, and also import other style files */
+a {
+  cursor: pointer
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.files-table {
+  margin: auto;
+  width: 60%;
+}
+
+.add-buton {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+
+.file-input {
+  display: none;
+}
+
+.leftPanel {
+  width: 70%;
+  overflow: auto;
+}
+
+.rightPanel {
+  width: 30%;
+  text-align: center;
+}
+
+.rightPanel-box {
+  width: calc(100% - 30px);
+  height: 100%;
+  margin: auto;
+  border-left-style: outset;
+  border-width: thin;
+  text-align: left;
+}
+
+.leftPanel,
+.rightPanel {
+  height: 60vh;
+  vertical-align: top;
+  display: inline-block;
+}
+
+.parentPanel {
+  overflow: hidden;
+  width: 100%;
+  // display: inline-block;
+}
+
+.rightPanel-element {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.leftPanel table {
+  width: 100%;
+}
+
+table tr td {
+  word-break: break-word;
+}

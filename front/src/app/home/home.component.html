@@ -1,0 +1,42 @@
+﻿<table mat-table [dataSource]="dataSource" matSort class="files-table">
+
+  <ng-container matColumnDef="filename">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Файл </th>
+    <td mat-cell *matCellDef="let element"> {{element.filename}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="path">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Путь </th>
+    <td mat-cell *matCellDef="let element"> {{element.path}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="created">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Добавлен </th>
+    <td mat-cell *matCellDef="let element"> {{element.created | date: 'dd.MM.yy hh:mm'}} </td>
+  </ng-container>  
+
+  <ng-container matColumnDef="user">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Добавил </th>
+    <td mat-cell *matCellDef="let element"> {{element.user}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-icon-button color="primary" >
+        <mat-icon>delete</mat-icon>
+      </button>
+
+    </td>
+  </ng-container>
+
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<div class="add-buton">
+  <button class="add-buton" mat-fab color="warn" (click)="openDialog()">
+    <mat-icon >add_circle</mat-icon>
+  </button>
+</div>
